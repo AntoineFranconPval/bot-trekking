@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<meta charset="utf-8"/>
+		<title>Votre trek idéal</title>
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<script src="bootstrap/js/jquery.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	    <link href="style_demo_V3.css" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css?family=Alex+Brush|Amatic+SC|Bad+Script|Clicker+Script|Dancing+Script|Marck+Script|Meddon|Meie+Script|Petit+Formal+Script|Pinyon+Script|Princess+Sofia|Zeyada" rel="stylesheet"> 
+	    <link rel="icon" type="image/png" href="favicon.png" />
+  </head>
+  <body onload="debutConv()"  onresize="scrollWhenResize()">
+
+	<nav class="navbar navbar-doublerow navbar-trans navbar-static-top"> 		<!-- Master nav -->
+				<!-- top nav -->
+				<nav class="navbar navbar-top">
+					<div class="container">
+						<!-- left nav top -->
+						<ul class="nav navbar-nav pull-left" style="margin-left: 45px;">
+							<!-- <li><a href="#"><span style="color: rgb(204, 85, 0); font-size: 2vmin;" class="glyphicon glyphicon-tree-conifer"></span></a></li>
+							<li><a href="#"><span style="color: rgb(204, 85, 0); font-size: 2vmin;" class="glyphicon glyphicon-globe"></span></a></li>
+							<li><a href="#"><span style="color: rgb(204, 85, 0); font-size: 2vmin;" class="glyphicon glyphicon-comment"></span></a></li> -->
+							<div class="navbar-header flex-item">
+								<div class="navbar-brand" href="https://pval.com/"><img src="images/logo_pval.png" width="57px" /></div>
+							</div>
+						</ul> 
+						
+						
+						
+						<!-- right nav top -->
+						<div id="identification_bar">
+							<ul class="nav navbar-nav pull-right" style="padding:9px; margin-right: 50px; font-family:">
+								<input style="display: none;" type="text" class="" name="username" id="usernameID" placeholder="Username">
+								<input style="display: none;" type="text" class="" name="password" id="passwordID" placeholder="Password" onfocus="seChangerEnPassword()">&nbsp;&nbsp;&nbsp;
+								
+								<li style="white-space:nowrap;"><p id="name_user_main" class="name_user"><strong>ID</strong> : <%= user.local.identifiant %><p></li>
+								<a href="#" class="btn btn-sm btn-primary dropdown" data-toggle="dropdown"><span style="color: rgb(204, 85, 0); font-size: 1.5vmin;" class="glyphicon glyphicon-user">&nbsp;</span>Choisir un profil</a>
+								<a href="/logout" class="btn btn-sm btn-success" onclick="reinitialiser()"><span style="color: rgb(204, 85, 0); font-size: 1.5vmin;" class="glyphicon glyphicon-log-out">&nbsp;</span> Sortir</a>
+								
+								
+								<ul class="choixProfil dropdown-menu">
+
+								  <li><p>&nbsp;&nbsp;&nbsp;Choisissez votre profil :</p></li>
+								  
+								  <li class="divider"></li>
+
+								  <li><a class="profilTexte" href="#" onclick="choisirProfil(1)">S'éclater en famille</a></li>
+								  
+								  <li class="divider"></li>
+
+								  <li><a class="profilTexte" href="#" onclick="choisirProfil(2)">Escapade à deux</a></li>
+
+								  <li class="divider"></li>
+
+								  <li><a class="profilTexte" href="#" onclick="choisirProfil(3)">Les joies de l'amitié</a></li>
+								  
+								  <li class="divider"></li>
+
+								  <li><a class="profilTexte" href="#" onclick="choisirProfil(0)">Vous et rien que vous</a></li>
+
+								</ul>
+							</ul>
+						</div>
+						
+						<div id="personilized_bar" style="display: none;">
+							<ul class="nav navbar-nav pull-right"  style="padding:9px; margin-right: 50px; font-family:">
+								<li style="white-space:nowrap;"><p id="name_user" class="name_user"><p></li>
+								<a href="#" class="btn btn-sm btn-primary dropdown" data-toggle="dropdown"><span style="color: rgb(204, 85, 0); font-size: 1.5vmin;" class="glyphicon glyphicon-user">&nbsp;</span>Choisir un profil</a>
+								<a href="/logout" class="btn btn-sm btn-success" onclick="reinitialiser()"><span style="color: rgb(204, 85, 0); font-size: 1.5vmin;" class="glyphicon glyphicon-log-out">&nbsp;</span> Sortir</a>
+								
+								<ul class="choixProfil dropdown-menu">
+
+								  <li><p>&nbsp;&nbsp;&nbsp;Choisissez votre profil :</p></li>
+								  
+								  <li class="divider"></li>
+
+								  <li><a class="profilTexte" href="#" onclick="choisirProfil(1)">S'éclater en famille</a></li>
+								  
+								  <li class="divider"></li>
+
+								  <li><a class="profilTexte" href="#" onclick="choisirProfil(2)">Escapade à deux</a></li>
+
+								  <li class="divider"></li>
+
+								  <li><a class="profilTexte" href="#" onclick="choisirProfil(3)">Les joies de l'amitié</a></li>
+								  
+								   <li class="divider"></li>
+
+								  <li><a class="profilTexte" href="#" onclick="choisirProfil(0)">Vous et rien que vous</a></li>
+
+								</ul>
+							</ul>
+						</div>
+						
+						
+					</div>
+				</nav>
+				
+				<!-- down nav -->
+				<nav class="navbar navbar-down">
+					<div class="container">
+						<div class="flex-container">
+							<div class="navbar-header flex-item">
+								<div class="navbar-brand" href="#">Trek Aventure</div>
+							</div>
+							<ul class="nav navbar-nav flex-item hidden-xs">
+								<li><a href="#">Nos</br><strong>Destinations</strong></a></li>
+								<li><a  style="border-bottom: 1px solid #CC5500; color: #CC5500; background-color: transparent;" href="#">Votre</br><strong>Circuit sur mesure</strong></a></li>
+								<li><a href="#">Forum</br><strong>Des aventuriers</strong></a></li>
+								<li><a href="#">Carnet</br><strong>De voyage</strong></a></li>
+								<li><a href="#">Nos</br><strong>Coups de coeur</strong></a></li>
+							</ul>
+							<ul class="nav navbar-nav flex-item hidden-xs pull-right">
+								<li><a href="#" class=""></a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+
+			</nav>		<!-- /master nav -->
+
+			<!-- <form action="confirmation_reservation.html" method="get" target="_blank">
+					<input type="hidden" name="nom_trek" value="le site de ifoezgvuisdhj">
+					<input type="hidden" name="url_trek" value="images/dolomites.jpg">
+					<button class="action-button boutonAselect_2" type="submit">Je veux faire ce trek !</button>
+			</form> -->
+			
+			<div class="contenuGlobal">
+				<!-- carré blanc -->
+				<div class="content" id="content" >
+				<!-- <iframe style="width: 50%; high: 300px; margin-left: 300px; margin-top:50px;" src='https://webchat.botframework.com/embed/pvalmontagne?s=bontDhIEz6Q.cwA.cy0.YMlzh3OUoDLg0YbdMRuFHuAULPAZ4Gr5-B3H0Xv2GKM'></iframe> -->
+				
+				
+						<!-- page d'accueil -->
+						<div id="debutConv" class="debutConv">
+							<div class="row">
+								<div class="presentation" id="presentation">Voici Philéas ! Grand aventurier devant l'éternel, il vous fera profiter de son expertise &nbsp;&nbsp;<img src="images/recast_ai_logo_transparent.png" alt="logo recast" style="width:80px;height:80px;"></div>
+								<div class="message_perso" id="message_perso"></div>
+								</br>
+								<button id="BoutondebutConv" type="button" style="right:30px;" class="menerConv" onclick="debutConv()">Se laisser guider par Philéas</button>
+								<p class="identifier_vous" style="display:none;" id="identifier_vous">Identifier vous afin de débuter une nouvelle conversation.</p>
+								</br>
+								<div id="voyagesPrecedents"></div>
+								</br>
+								<div id="OscarGotaProblem" style="display:none;"><div class="danger">Philéas a eu un souci technique. Merci de recommencer votre conversation.</div></div>
+							</div>
+						</div>
+						
+						<!-- page d'accueil -->
+						<div id="chargement" class="chargement">
+							<div>
+								</br></br></br>
+								<img src="images/loadingBar.gif" alt="Loading item" style="width:6%;">
+								<h3>Chargement....</h3>
+							</div>	
+						</div>
+						
+						<!-- chat -->
+						<div class="conv" id="conv">
+	
+								<button class="fermerConv" type="button" onclick="finConv()"><span class="glyphicon glyphicon-remove-circle"></span></button>
+								<div>
+								<div class="sii-chat">
+									<div style="display: none;"><input type="text" name="sii-chat-name" /><button class="sii-chat-login"></button></div>
+									<div class="console" id="console"></br></br></br></br></br></br></br></br></br></br></br></br>
+									</div>
+									</br>
+									<div id="ChatBot">
+										<form class="sii-chat-form" id="formEnvoieMessage" action="#">
+											<input type="text" value="" name="sii-chat-message" id="sii-chat-message" placeholder= "Message" onkeypress="afficherMessage(event)"/>
+											<input class="clignotement "type="text" value="" disabled="true" name="sii-chat-message_vide" placeholder= "Phil est en train d'écrire..." style="display:none;" id="sii-chat-message_vide"/>
+											<!-- <a class="clignotement "type="text" name="sii-chat-message_vide" style="display:none;" id="sii-chat-message_vide"><img src="images/loadingBar.gif" alt="loading bar" style="width:20px; height:20px;">Philest en train d'écrire...<a/> -->
+											<button type="submit" class="sii-chat-send" id="sii-chat-send"><span class="glyphicon glyphicon-send"></span></button>
+										</form>
+									</div>
+									<div id="selectionBouton" class="selectionBouton" style="display: none;"></div>
+								</div>
+								<!-- <div style="float: right; width:4%">
+								<div class="progress vertical">
+								  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 30%;">
+								</div>  
+								</div>
+								</div> -->
+								</div>
+						  
+						</div>
+						
+				</div>
+				
+				<div class="footer">
+					<div class="flechettes">
+								<div class="precedenteImage">
+									<button class="defilement" onclick="changeBackground(0)"><span style="color: rgb(204, 85, 0); font-size: 3vmin;" class="glyphicon glyphicon-chevron-left"></span></button>
+								</div>
+								<div class="suivanteImage">
+									<button class="defilement" onclick="changeBackground(1)"><span style="color: rgb(204, 85, 0); font-size: 3vmin;" class="glyphicon glyphicon-chevron-right"></span></button>
+								</div>
+					</div>
+				</div>
+			</div>
+			
+	<script src="https://cdn.recast.ai/scripts/recastai-lib-browser.js"></script>
+    <script>
+	
+	conversationId = '';
+	k = 1;
+	afficherMoi = 'O';
+	afficherPremierMessage = 'N';
+	userId = 'A' + idAleatoire();
+	document.getElementById('passwordID').value = '';
+	document.getElementById('usernameID').value = '';
+	IdTokenDirectLine = "Bearer zZlfONvcwns.cwA.DDo.FRx84yV4tFKnjSRqSmFbWw5UwkEh9Aj-YexwPnIDuSU";
+	aPasTrouve = true;
+	compteurMax = 0;
+	
+	$(document).ready(function () {
+		$('#formEnvoieMessage').on('submit', function(e) {
+		afficherMessageAvecTouche();
+		return false;
+        
+		});
+	});
+	
+	/* function afficherMessage(event) {
+		
+		if (event.which == 13 || event.keyCode == 13) {
+				
+				var messageToSend = document.getElementById("sii-chat-message").value;
+				
+				var classMoi = "moi";
+				if (afficherMoi == 'N') {
+				// Pas de "Moi:" en cas de selection avec bouton car il n'y a pas de message à afficher
+				var messageMoi = '';
+				classMoi = "moiInvisible";
+				
+				}
+				else {
+				var messageMoi = 'Moi : ';
+				
+				}
+				
+				document.getElementById("sii-chat-message").style.display = 'none';
+				document.getElementById("sii-chat-message").disabled = 'true';
+				document.getElementById("sii-chat-message_vide").style.display = 'initial';
+				
+				var message = '<div class="'+classMoi+'"><strong>&nbsp;'+messageMoi+'</strong>' + messageToSend + '&nbsp;&nbsp;&nbsp;&nbsp;</div>';
+				var objDiv = document.getElementById('console');
+				objDiv.innerHTML +=  message;
+				objDiv.scrollTop = objDiv.scrollHeight;
+				document.getElementById('sii-chat-message').value =  '';
+				envoyerMessage(messageToSend);
+		}
+		
+		
+	} */
+	
+	function afficherMessageAvecTouche () {
+	
+	if (document.getElementById("sii-chat-message").disabled != 'true') {
+	
+				var messageToSend = document.getElementById("sii-chat-message").value;
+				
+				var classMoi = "moi";
+				if (afficherMoi == 'N') {
+				// Pas de "Moi:" en cas de selection avec bouton car il n'y a pas de message à afficher
+				var messageMoi = '';
+				classMoi = "moiInvisible";
+				
+				}
+				else {
+				var messageMoi = 'Moi : ';
+				
+				}
+				
+				document.getElementById("sii-chat-message").style.display = 'none';
+				document.getElementById("sii-chat-message").disabled = 'true';
+				document.getElementById("sii-chat-message_vide").style.display = 'initial';
+				
+				var message = '<div class="'+classMoi+'"><strong>&nbsp;'+messageMoi+'</strong>' + messageToSend + '&nbsp;&nbsp;&nbsp;&nbsp;</div>';
+				var objDiv = document.getElementById('console');
+				objDiv.innerHTML +=  message;
+				objDiv.scrollTop = objDiv.scrollHeight;
+				document.getElementById('sii-chat-message').value =  '';
+				envoyerMessage(messageToSend);
+		}
+	
+	}
+	
+	function envoyerMessage (message) {
+		//alert('envoyer message');
+		url2 = "https://directline.botframework.com/v3/directline/conversations/" + conversationId + "/activities";
+					var posting2 = $.ajax({
+					url: url2,
+					beforeSend: function(xhrObj){
+						// Request headers
+						//xhrObj.setRequestHeader("Authorization","Bearer bontDhIEz6Q.cwA.XQU.vQbJlrEinjd55GCDILDR0QrXxk8pX54RaLMIJG2zrC4");
+						xhrObj.setRequestHeader("Authorization",IdTokenDirectLine);
+						xhrObj.setRequestHeader("Content-Type","application/json");
+					},
+					type: "POST",
+					// Request body
+					data: JSON.stringify({
+						"type": "message",
+						"from": {
+							"id": userId
+						},
+						"text": message
+					}),				
+					
+					});	
+					
+					posting2.done(function( data ) {
+			
+					
+					var inputMessage = document.getElementById("sii-chat-message");
+					inputMessage.disabled = '';
+					document.getElementById("sii-chat-message").style.display = 'none';
+					document.getElementById("sii-chat-message_vide").style.display = 'initial';
+					afficherMoi = 'N';
+					
+					AttendreReponse();
+					
+					
+					var inputMessage = document.getElementById("sii-chat-message");
+					inputMessage.disabled = '';
+					document.getElementById("sii-chat-message").focus();
+					afficherMoi = 'O';
+					afficherPremierMessage = 'N';
+					
+					
+					});
+		
+		
+	}
+	
+	
+	function seChangerEnPassword () {
+		var password = document.getElementById('passwordID');
+		password.type = 'password';
+	}
+	
+	/* function unfade(element) {
+		var op = 0.1;  // initial opacity
+		element.style.display = 'block';
+		var timer = setInterval(function () {
+			if (op >= 1){
+				clearInterval(timer);
+			}
+			element.style.opacity = op;
+			element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+			op += op * 0.1;
+		}, 10);
+	}
+
+	function fade(element) {
+		var op = 1;  // initial opacity
+		var timer = setInterval(function () {
+			if (op <= 0.1){
+				clearInterval(timer);
+				element.style.display = 'none';
+			}
+			element.style.opacity = op;
+			element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+			op -= op * 0.1;
+		}, 50);
+	} */
+	
+	$(document).ready(function(){
+      blink();
+	});
+   
+   function blink(){
+      //$(".clignotement").animate({opacity:0},1000).animate({opacity:1}, 1000);
+      //setTimeout("blink()",2000);
+   }
+	
+	function idAleatoire () {
+		var a = Math.floor(Math.random()*100000);
+		return (a);
+	}
+	function reinitialiser () {
+		document.getElementById("identification_bar").style.display = "initial";
+		document.getElementById("personilized_bar").style.display = "none";
+		document.getElementById("message_perso").innerHTML = '';
+		document.getElementById("voyagesPrecedents").innerHTML = '';
+		document.getElementById('usernameID').value = '';
+		document.getElementById('passwordID').value = '';
+		userId = 'A' + idAleatoire();
+		document.getElementById("presentation").style.display = "initial";
+		finConv();
+		
+		
+	}
+	function identification () {
+	
+		var username = document.getElementById('usernameID').value;
+		var password = document.getElementById('passwordID').value;
+		if (username == 'Michel') {
+			if (password == 'azerty') {
+			userId = 'B' + idAleatoire();
+			document.getElementById("identifier_vous").style.display = "none";
+			document.getElementById("BoutondebutConv").style.display = "initial";
+			document.getElementById("message_perso").innerHTML = 'Bonjour Michel, comment va votre Famille ?</br> Toujours partant pour un trek ?</br>';
+			document.getElementById("presentation").style.display = "none";
+			document.getElementById("voyagesPrecedents").innerHTML = '</br><div id="content" class="row" style="width: 94%; margin-left: 3%"><div class="col-md-3"><h3>Vos derniers voyages:</h3></div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/pyrennees.jpg" alt="Tigre" class="img-thumbnail"></br>Les Pyrénées</div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/reunion.jpg" alt="Tigre" class="img-thumbnail"></br>La Réunion</div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/roussillon.jpg" alt="Tigre" class="img-thumbnail"></br>Les cheminées du Roussillon</div></div>';
+			document.getElementById("identification_bar").style.display = "none";
+			document.getElementById("personilized_bar").style.display = "initial";
+			document.getElementById("name_user").innerHTML = "Bonjour Michel !&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			finConv();
+			
+			
+			
+			} else {alert('Mot de passe incorrect, veuillez réessayer.');}
+		}
+		else if (username == 'Jeannine') {
+			if (password == 'azerty') {
+			userId = 'C' + idAleatoire();
+			document.getElementById("identifier_vous").style.display = "none";
+			document.getElementById("BoutondebutConv").style.display = "initial";
+			document.getElementById("message_perso").innerHTML = 'Bonjour Jeannine, comment allez-vous ? </br> toujours partante pour un trek ?</br>';
+			document.getElementById("presentation").style.display = "none";
+			document.getElementById("voyagesPrecedents").innerHTML = '</br><div id="content" class="row" style="width: 94%; margin-left: 3%"><div class="col-md-3"><p>Vos derniers voyages:</p></div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/tyrole.jpg" alt="Tigre" class="img-thumbnail"></br>Le tyrole autrichien</div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/siberie.jpg" alt="Tigre" class="img-thumbnail"></br>Le lac Baïkal</div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/brycecanyon.jpg" alt="Tigre" class="img-thumbnail"></br>Les grands parcs américains</div></div>';
+			document.getElementById("identification_bar").style.display = "none";
+			document.getElementById("personilized_bar").style.display = "initial";
+			document.getElementById("name_user").innerHTML = "Bonjour Jeannine !&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			finConv();
+			
+			} else {alert('Mot de passe incorrect, veuillez réessayer.');}
+		}
+		else if (username == 'Paul') {
+			if (password == 'azerty') {
+			userId = 'D' + idAleatoire();
+			document.getElementById("identifier_vous").style.display = "none";
+			document.getElementById("BoutondebutConv").style.display = "initial";
+			document.getElementById("message_perso").innerHTML = "Bonjour Paul, toujours partant pour partir s'éclater avec vos ami(e)s ?</br>";
+			document.getElementById("presentation").style.display = "none";
+			document.getElementById("voyagesPrecedents").innerHTML = '</br><div id="content" class="row" style="width: 94%; margin-left: 3%"><div class="col-md-3"><h3>Vos derniers voyages:</h3></div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/nepal.jpg" alt="Tigre" class="img-thumbnail"></br>Autour de l\'Everest</div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/scandinavie.jpg" alt="Tigre" class="img-thumbnail"></br>Expédition au Spitzberg</div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/patagonie.jpg" alt="Tigre" class="img-thumbnail"></br>La Patagonie</div></div>';
+			document.getElementById("identification_bar").style.display = "none";
+			document.getElementById("personilized_bar").style.display = "initial";
+			document.getElementById("name_user").innerHTML = "Bonjour Paul !&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			finConv();
+			
+			} else {alert('Mot de passe incorrect, veuillez réessayer.');}
+		}
+		else {
+			alert('Identifiant inconnu, veuillez vous inscrire.');
+		}
+ 	
+	}
+	
+	function debutConv () {
+			//alert('debutConv');
+			afficherPremierMessage = 'O';
+			document.getElementById("console").innerHTML = "";
+			document.getElementById('sii-chat-message').value = '';
+			document.getElementById("OscarGotaProblem").style.display = 'none';
+			document.getElementById("content").style.background = "rgba(230, 215, 230, 0)";
+			compteurMax = 0;
+			
+			
+			var obj1 = document.getElementById("debutConv");
+			var obj2 = document.getElementById("conv");
+			var obj3 = document.getElementById("message_perso");
+			var obj4 = document.getElementById("chargement"); 
+					
+			obj1.style.display = 'none';
+			obj2.style.display = 'none';
+			obj3.style.display = 'none';
+			obj4.style.display = 'initial';
+
+			var posting = $.ajax({
+				url: "https://directline.botframework.com/v3/directline/conversations",
+				beforeSend: function(xhrObj){
+					xhrObj.setRequestHeader("Authorization",IdTokenDirectLine);
+				},
+				type: "POST",
+				
+			});
+			
+		    // Put the results in a div
+		    posting.done(function( data ) {
+					conversationId = data['conversationId'];
+					url2 = "https://directline.botframework.com/v3/directline/conversations/" + conversationId + "/activities";
+					var posting2 = $.ajax({
+					url: url2,
+					beforeSend: function(xhrObj){
+						// Request headers
+						//xhrObj.setRequestHeader("Authorization","Bearer bontDhIEz6Q.cwA.XQU.vQbJlrEinjd55GCDILDR0QrXxk8pX54RaLMIJG2zrC4");
+						xhrObj.setRequestHeader("Authorization",IdTokenDirectLine);
+						xhrObj.setRequestHeader("Content-Type","application/json");
+					},
+					type: "POST",
+					// Request body
+					data: JSON.stringify({
+						"type": "message",
+						"from": {
+							"id": userId
+						},
+						"text": 'Hello'
+					}),				
+					
+					});	
+							
+					posting2.done(function( data ) {
+			
+					
+					var inputMessage = document.getElementById("sii-chat-message");
+					inputMessage.disabled = '';
+					document.getElementById("sii-chat-message").style.display = 'none';
+					document.getElementById("sii-chat-message_vide").style.display = 'initial';
+					afficherMoi = 'N';
+					AttendreReponse();
+					
+					var obj1 = document.getElementById("debutConv");
+					var obj2 = document.getElementById("conv");
+					var obj3 = document.getElementById("message_perso");
+					var obj4 = document.getElementById("chargement"); 
+					
+					obj1.style.display = 'none';
+					obj2.style.display = 'initial';
+					obj3.style.display = 'none';
+					obj4.style.display = 'none';
+					
+					
+					var inputMessage = document.getElementById("sii-chat-message");
+					inputMessage.disabled = '';
+					document.getElementById("sii-chat-message").focus();
+					afficherMoi = 'O';
+					afficherPremierMessage = 'N';
+					
+					
+					});
+				
+					});	
+    }
+	
+	function finConv () {
+		//alert('fin conv')
+		
+		var obj1 = document.getElementById("debutConv");
+		var obj2 = document.getElementById("conv");
+		var obj3 = document.getElementById("message_perso");
+		var obj4 = document.getElementById("chargement"); 
+					
+		obj1.style.display = 'none';
+		obj2.style.display = 'none';
+		obj3.style.display = 'none';
+		obj4.style.display = 'initial';
+			
+		var url2 = "https://directline.botframework.com/v3/directline/conversations/" + conversationId + "/activities";
+					var posting2 = $.ajax({
+					url: url2,
+					beforeSend: function(xhrObj){
+						// Request headers
+						//xhrObj.setRequestHeader("Authorization","Bearer bontDhIEz6Q.cwA.XQU.vQbJlrEinjd55GCDILDR0QrXxk8pX54RaLMIJG2zrC4");
+						xhrObj.setRequestHeader("Authorization",IdTokenDirectLine);
+						xhrObj.setRequestHeader("Content-Type","application/json");
+					},
+					type: "POST",
+					// Request body
+					data: JSON.stringify({
+						"type": "message",
+						"from": {
+							"id": userId
+						},
+						"text": "bye"
+					}),				
+					
+				});	
+							
+				posting2.done(function( data ) { 
+					
+				var urlEnd = " https://directline.botframework.com/v3/directline/conversations/"+ conversationId +"/activities";
+				var posting = $.ajax({
+							url: urlEnd,
+							beforeSend: function(xhrObj){
+								// Request headers
+								//xhrObj.setRequestHeader("Authorization","Bearer bontDhIEz6Q.cwA.XQU.vQbJlrEinjd55GCDILDR0QrXxk8pX54RaLMIJG2zrC4");
+								xhrObj.setRequestHeader("Authorization",IdTokenDirectLine);
+								xhrObj.setRequestHeader("Content-Type","application/json");
+							},
+							type: "POST",
+							// Request body
+							data: JSON.stringify({
+								"type": "endOfConversation",
+								"from": {
+									"id": "user1"
+								}
+							}),													
+						});	
+					
+					// Put the results in a div
+					posting.done(function( data ) {
+						conversationId = '';
+						k = 1;
+						
+						
+						var obj1 = document.getElementById("debutConv");
+						var obj2 = document.getElementById("conv");
+						var obj3 = document.getElementById("message_perso");
+						var obj4 = document.getElementById("chargement");
+						
+						
+						obj1.style.display = 'initial';
+						obj2.style.display = 'none';
+						obj3.style.display = 'initial'; 
+						obj4.style.display = 'none';
+						
+						var objTexte = document.getElementById("console");
+						objTexte.innerHTML = '</br></br></br></br></br></br></br></br></br></br></br></br></br></br>';
+						var objBouton = document.getElementById("selectionBouton");
+						document.getElementById("content").style.background = "rgba(230, 215, 230, 0.8)";
+						objBouton.innerHTML = '';
+						afficherMoi = 'O';
+						aPasTrouve = true;
+						
+					});
+			 });
+    }
+	
+	function pause(milliseconds) {
+		var dt = new Date();
+		while ((new Date()) - dt <= milliseconds) { /* Do nothing */ }
+	}
+	
+	function AttendreReponse() {
+			//alert('attendre message');
+					
+			var inputMessage = document.getElementById("sii-chat-message");
+			inputMessage.disabled = 'disabled';
+			
+			var iCompteur = 0;
+			var limiteCompteur = 30;
+			while(iCompteur < limiteCompteur) {
+				if (iCompteur != limiteCompteur - 1) {
+					if  (aPasTrouve) {
+						pause(500);
+						var aRepondu = requeteAttenteMessage();
+						iCompteur = iCompteur + 1;
+					}
+					else {
+						iCompteur = limiteCompteur;
+					}
+				}
+				else {
+					
+					if (compteurMax < 1) {
+					
+						var reponseBot = "Pardonnez moi j'ai eu une absence technique transitoire. Pouvez vous renvoyer votre message ?";
+						var message = '<div class="pval_montagne"><strong>Phil </strong>: ' + reponseBot + '</div>';
+						var objDiv = document.getElementById("console");
+						objDiv.innerHTML = objDiv.innerHTML + message;
+						objDiv.scrollTop = objDiv.scrollHeight;
+						aPasTrouve = true;
+						iCompteur = iCompteur + 1;
+						
+						k = k+1;
+						var inputMessage = document.getElementById("sii-chat-message");
+						inputMessage.disabled = '';
+									
+						document.getElementById("sii-chat-message").style.display = 'initial';
+						document.getElementById("sii-chat-message_vide").style.display = 'none';
+						document.getElementById("sii-chat-message").focus();
+						document.getElementById("ChatBot").style.opacity = '1';
+						afficherMoi = 'O';
+						compteurMax = compteurMax + 1;
+					} 
+					else {
+						finConv();
+						document.getElementById("OscarGotaProblem").style.display = 'initial';
+						compteurMax = 0;
+					}
+				}
+			}
+			aPasTrouve = true;
+	
+	}
+	
+	
+	function requeteAttenteMessage () {
+		//alert('requeteAttenteMessage');
+		var url3 = "https://directline.botframework.com/v3/directline/conversations/" + conversationId + "/activities";
+		var posting3 = $.ajax({
+							url: url3,
+							beforeSend: function(xhrObj){
+								// Request headers
+								//xhrObj.setRequestHeader("Authorization","Bearer bontDhIEz6Q.cwA.XQU.vQbJlrEinjd55GCDILDR0QrXxk8pX54RaLMIJG2zrC4");
+								xhrObj.setRequestHeader("Authorization",IdTokenDirectLine);
+							},
+							type: "GET",
+							async: false,
+							// Request body
+						
+							
+						});
+					
+					posting3.done(function( data ) {
+						var reponseBotBrute = JSON.stringify(data);
+						var reponseBotLongueur = data["activities"].length;
+						if (reponseBotLongueur>k) {
+							
+							if(data["activities"][k].hasOwnProperty('text')){
+								var reponseBot = data["activities"][k]["text"];
+								reponseBot = reponseBot.replace("!", "&nbsp;!");
+								var message = '<div class="pval_montagne"><strong>Phil :</strong> ' + reponseBot + '</div>';
+								var objDiv = document.getElementById("console");
+								objDiv.innerHTML = objDiv.innerHTML + message;
+								objDiv.scrollTop = objDiv.scrollHeight;
+								k = k+2;
+								var inputMessage = document.getElementById("sii-chat-message");
+								inputMessage.disabled = '';
+								
+								document.getElementById("sii-chat-message").style.display = 'initial';
+								document.getElementById("sii-chat-message_vide").style.display = 'none';
+								document.getElementById("sii-chat-message").focus();
+								document.getElementById("ChatBot").style.opacity = '1';
+								afficherMoi = 'O';
+								
+							} else if (data["activities"][k].hasOwnProperty('attachments')) { 
+									
+										if (data["activities"][k]["attachments"][0]["contentType"] == "application/vnd.microsoft.card.hero") {
+											
+											if (data["activities"][k]["attachments"][0]["content"].hasOwnProperty('images')) {
+												var imageUrl = data["activities"][k]["attachments"][0]["content"]["images"][0]["url"];
+												var imageMontagne = '<img src="'+imageUrl+'" alt="Mountain View" style="width:90%;margin-left:5%;border:3px solid black;border-radius:10px;">';
+												var titreSite = data["activities"][k]["attachments"][0]["content"]["title"];
+												
+												var title = '<div class="pval_montagne_titre" style="text-align: center;"><strong>' + titreSite + '</strong></div>';
+												var objDiv = document.getElementById("console");
+												//objDiv.innerHTML = objDiv.innerHTML + title;
+												if (data["activities"][k]["attachments"][0]["content"].hasOwnProperty('subtitle')) {
+													var reponseBot = data["activities"][k]["attachments"][0]["content"]["subtitle"];
+													reponseBot = reponseBot.replace("!", "&nbsp;!");
+													var message = '</br><div class="row" style="width: 100%;"><div style="float: left; width: 40%; padding-right:0; padding-left:0; margin-left: 0%;">' + imageMontagne + '</div><div style="float: right; width: 55%; padding-right: 0px;"><div class="pval_montagne_titre" style="text-align: center; text-decoration:underline;"><strong>' + titreSite + '</strong></div></br><div class="pval_montagne_special">' + reponseBot + '</div></div></div>';
+								
+													objDiv.innerHTML = objDiv.innerHTML + '</br>' + message;
+												} else{ objDiv.innerHTML = objDiv.innerHTML + imageMontagne; }
+												
+											} else {
+												var reponseBot = data["activities"][k]["attachments"][0]["content"]["title"];
+												var message = '<div class="pval_montagne"><strong>Phil :</strong> ' + reponseBot + '</div></br>';
+												var objDiv = document.getElementById("console");
+												objDiv.innerHTML = objDiv.innerHTML + message;
+												var bouton = afficher_bouton(data["activities"][k]["attachments"][0]["content"]["buttons"]);
+												objDiv.scrollTop = objDiv.scrollHeight;
+												k = k+2;
+												var inputMessage = document.getElementById("sii-chat-message");
+												inputMessage.disabled = 'disabled';
+												document.getElementById("sii-chat-message").style.display = 'initial';
+												document.getElementById("sii-chat-message_vide").style.display = 'none';
+											}
+											
+											if (data["activities"][k]["attachments"][0]["content"].hasOwnProperty('buttons')) {
+												var bouton = afficher_bouton(data["activities"][k]["attachments"][0]["content"]["buttons"]);
+												var inputMessage = document.getElementById("sii-chat-message");
+												inputMessage.disabled = 'True';
+												document.getElementById("sii-chat-message").style.display = 'initial';
+												document.getElementById("sii-chat-message_vide").style.display = 'none';
+												afficherMoi = 'N';
+											} else {
+												document.getElementById("sii-chat-message").style.display = 'initial';
+												document.getElementById("sii-chat-message").disabled = '';
+												document.getElementById("sii-chat-message_vide").style.display = 'none';
+												document.getElementById("sii-chat-message").focus();
+												document.getElementById("ChatBot").style.opacity = '1';
+												afficherMoi = 'O';
+											}
+											objDiv.scrollTop = objDiv.scrollHeight;
+											k = k+2;
+										
+										}
+										
+									}
+								aPasTrouve = false;
+								//$('.content').css('border', '3px solid rgba(230, '+(255-30*k)+', 230, 0.9)');
+													
+						} else {
+							aPasTrouve = true;
+						}
+	
+				});
+	}
+	
+	function afficher_bouton(arg) {
+	//alert('boutons à afficher');
+		var nbrBouton = arg.length;
+		var obj = document.getElementById("console");
+		document.getElementById("sii-chat-message").style.display = 'initial';
+		document.getElementById("sii-chat-message_vide").style.display = 'none';
+		document.getElementById("ChatBot").style.opacity = '0.7';
+		
+		
+		/* var btn = document.createElement("BUTTON");       
+		var t = document.createTextNode("couple retraité");     
+		btn.appendChild(t);                               
+		
+		var att = document.createAttribute("class");       
+		att.value = "action-button shadow animate boutonAselect_0";  
+		btn.setAttributeNode(att);
+
+		var att2 = document.createAttribute("onclick");       
+		att2.value = "this.disabled=true;";  
+		btn.setAttributeNode(att2);    
+		
+		obj.appendChild(btn); */
+		
+		var iterAff = 0;
+		var messageBouton = '<div class="moi_bouton"><div class=row"><div style="display: inline-block;">';
+		for (var iter = 0; iter < nbrBouton; iter++) {
+			iterAff += arg[iter]["title"].length;
+			var boutonAafficher = '<input type="button" class="action-button shadow animate boutonAselect_0" onclick="aChoisi(\'' + arg[iter]["value"] + '\', \'' + arg[iter]["title"] + '\'); this.onclick = function(){};" value="'+ arg[iter]["title"] +'"/>';
+			
+			messageBouton = messageBouton + boutonAafficher;
+			/* if (iterAff > 25) {
+				messageBouton = messageBouton + '</div></div><div class="row"><div style="display: inline-block;">';
+				iterAff = 0;
+			} */
+			
+		
+		
+		}
+		
+		messageBouton = messageBouton + '</div></div></div></br>';
+		obj.innerHTML = obj.innerHTML + messageBouton;
+		
+		obj.scrollTop = obj.scrollHeight;
+		
+		afficherMoi = 'N';	
+	}
+	
+	function aChoisi(arg1, arg2) {
+	
+		envoyerMessage(arg1);
+		var objBouton = document.getElementById("selectionBouton");
+		objBouton.innerHTML = '';
+		afficherMoi = 'N';
+		var obj = document.getElementById("console");
+		obj.innerHTML = obj.innerHTML + '<div class="moi_bouton"><div class=row"><div style="display: inline-block;"><input type="button" class="action-button_1 shadow animate boutonAselect_1" value="'+ arg2 +'"/></div></div></div>';
+		obj.scrollTop = obj.scrollHeight;
+		//document.getElementById("sii-chat-message").disabled = '';
+		return false;
+	
+	}
+	
+	choix = 0;
+	setInterval("changeBackground(1)",90000);
+    var option = {
+      language: 'fr'
+    }
+	
+	function changeBackground(arg)
+	{	
+	
+		var arr = ["images/wallpaper1.jpg", "images/wallpaper2.jpg", "images/wallpaper3.jpg"];
+		if (parseInt(arg) == 1) {
+			window.choix = window.choix + 1;
+			if (window.choix > 2) {window.choix = 0;}
+		} 
+		else {
+			window.choix = window.choix - 1;
+			if (window.choix < 0) {window.choix = 2;}
+		}
+		
+		document.body.style.backgroundImage = "url("+arr[choix]+")";
+	}
+	
+	function choisirProfil(arg)
+	{
+		var obj1 = document.getElementById("debutConv");
+		var obj2 = document.getElementById("conv");
+		var obj3 = document.getElementById("message_perso");
+		var obj4 = document.getElementById("chargement"); 
+					
+		obj1.style.display = 'none';
+		obj2.style.display = 'none';
+		obj3.style.display = 'none';
+		obj4.style.display = 'initial';
+		
+		// var obj = document.getElementById("profil");
+		document.getElementById("identifier_vous").style.display = "none";
+		document.getElementById("BoutondebutConv").style.display = "initial";
+		
+		
+		if (arg == 0) {
+			//obj.innerHTML = '<img src="images/celibataire.jpg" alt="logo recast" style="width:180px;height:180px;">';
+			userId = 'A'+ idAleatoire();
+			document.getElementById("identification_bar").style.display = "initial";
+			document.getElementById("personilized_bar").style.display = "none";
+			document.getElementById("name_user").innerHTML = "";
+			document.getElementById("presentation").style.display = "initial";
+			document.getElementById("name_user").innerHTML = "<strong>ID</strong> : <%= user.local.identifiant %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			document.getElementById("message_perso").innerHTML = '';
+			finConv();
+		}
+		if (arg == 1) {
+			userId = 'B' + idAleatoire();
+			document.getElementById("identifier_vous").style.display = "none";
+			document.getElementById("BoutondebutConv").style.display = "initial";
+			document.getElementById("message_perso").innerHTML = 'Bonjour Michel, comment va votre Famille ?</br> Toujours partant pour un trek ?</br>';
+			document.getElementById("presentation").style.display = "none";
+			document.getElementById("voyagesPrecedents").innerHTML = '</br><div id="content" class="row" style="width: 94%; margin-left: 3%"><div class="col-md-3"><h3>Vos derniers voyages:</h3></div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/pyrennees.jpg" alt="Tigre" class="img-thumbnail"></br>Les Pyrénées</div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/reunion.jpg" alt="Tigre" class="img-thumbnail"></br>La Réunion</div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/roussillon.jpg" alt="Tigre" class="img-thumbnail"></br>Les cheminées du Roussillon</div></div>';
+			document.getElementById("identification_bar").style.display = "none";
+			document.getElementById("personilized_bar").style.display = "initial";
+			document.getElementById("name_user").innerHTML = "Bonjour Michel !&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+			finConv();
+		}
+		if (arg == 2) {
+			userId = 'C' + idAleatoire();
+			document.getElementById("identifier_vous").style.display = "none";
+			document.getElementById("BoutondebutConv").style.display = "initial";
+			document.getElementById("message_perso").innerHTML = 'Bonjour Jeannine, comment allez-vous ? </br> toujours partante pour un trek ?</br>';
+			document.getElementById("presentation").style.display = "none";
+			document.getElementById("voyagesPrecedents").innerHTML = '</br><div id="content" class="row" style="width: 94%; margin-left: 3%"><div class="col-md-3"><p>Vos derniers voyages:</p></div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/tyrole.jpg" alt="Tigre" class="img-thumbnail"></br>Le tyrole autrichien</div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/siberie.jpg" alt="Tigre" class="img-thumbnail"></br>Le lac Baïkal</div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/brycecanyon.jpg" alt="Tigre" class="img-thumbnail"></br>Les grands parcs américains</div></div>';
+			document.getElementById("identification_bar").style.display = "none";
+			document.getElementById("personilized_bar").style.display = "initial";
+			document.getElementById("name_user").innerHTML = "Bonjour Jeannine !&nbsp;";
+			finConv();
+		}
+		if (arg == 3) {
+			userId = 'D' + idAleatoire();
+			document.getElementById("identifier_vous").style.display = "none";
+			document.getElementById("BoutondebutConv").style.display = "initial";
+			document.getElementById("message_perso").innerHTML = "Bonjour Paul, toujours partant pour partir s'éclater avec vos ami(e)s ?</br>";
+			document.getElementById("presentation").style.display = "none";
+			document.getElementById("voyagesPrecedents").innerHTML = '</br><div id="content" class="row" style="width: 94%; margin-left: 3%"><div class="col-md-3"><h3>Vos derniers voyages:</h3></div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/nepal.jpg" alt="Tigre" class="img-thumbnail"></br>Autour de l\'Everest</div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/scandinavie.jpg" alt="Tigre" class="img-thumbnail"></br>Expédition au Spitzberg</div><div class="col-md-3"><img style="width:80%; max-width: 250px;" src="images/patagonie.jpg" alt="Tigre" class="img-thumbnail"></br>La Patagonie</div></div>';
+			document.getElementById("identification_bar").style.display = "none";
+			document.getElementById("personilized_bar").style.display = "initial";
+			document.getElementById("name_user").innerHTML = "Bonjour Paul !&nbsp;&nbsp;";
+			finConv();
+		}
+		
+		var obj1 = document.getElementById("debutConv");
+		var obj2 = document.getElementById("conv");
+		var obj3 = document.getElementById("message_perso");
+		var obj4 = document.getElementById("chargement"); 
+					
+		obj1.style.display = 'initial';
+		obj2.style.display = 'none';
+		obj3.style.display = 'initial';
+		obj4.style.display = 'none';
+		
+	
+	}
+	
+		function getRandomIntInclusive(min, max) {
+	  min = Math.ceil(min);
+	  max = Math.floor(max);
+	  return Math.floor(Math.random() * (max - min +1)) + min;
+	}
+	
+	
+	function scrollWhenResize () {
+	
+		var obj = document.getElementById("console");
+		obj.scrollTop = obj.scrollHeight;
+	
+	}
+	
+    </script>
+
+	</body>
+</html>

@@ -1,0 +1,993 @@
+body, html {
+	/* background-image: url("images/fondEcran2.jpg"); */
+	background-image: url("images/wallpaper3.jpg");
+	-webkit-transition: background-image 0.7s ease-in-out;
+	transition: background-image 0.5s ease-in-out;
+    background-color: #cccccc;
+	background-size: cover;
+	height: 100%;
+	margin:0;
+	padding:0;
+}
+.contenuGlobal {
+	margin:0;
+	padding:0;
+	margin-top: 0px;
+	width: 100%;
+}
+
+/* carré blanc */
+.content{
+	position: relative;
+	display: block;
+	margin:0;
+	padding:0;
+	margin-left: 5%;
+	margin-right : 5%;
+	height: 72vh;
+	background:rgba(230, 215, 230, 0.8);
+	border-radius: 15px;
+}
+
+.flechettes {
+	
+	position: relative;
+	display: block;
+	margin:0;
+	padding:0;
+	margin-left: 2.5%;
+	margin-right : 2.5%;
+	margin-top: 1vh;
+	
+}
+.precedenteImage {
+	float: left;
+}
+.suivanteImage {
+	float: right;
+}
+
+nav {
+	position:fixed;  
+	z-index:1; /*Add this*/
+	background-color: transparent;
+	display: block;
+}
+.reponseBot{
+	font-size: 3vmin;
+}
+
+.navbar-top {
+    background: rgba(255, 255, 255, 0.65);
+    border-bottom: 1px solid #CC5500;
+    color: #FFF;
+}
+
+.text-white{
+    color:#fff;
+}
+
+.navbar-doublerow > .navbar{
+	display: block;
+	padding: 0px auto;
+	margin: 0px auto;
+	min-height: 25px;
+}
+
+/*Down nav*/
+.navbar-doublerow .navbar-down .navbar-brand {
+    /*navbar brand*/
+	padding: 0px auto;
+	margin-right: 80px;
+	margin-top: 10px;
+	float: left;
+	color: #CC5500;
+	font-size: 4vmin;
+	font-family: 'Marck Script', cursive;
+}
+
+.navbar-doublerow .navbar-down {
+	background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.60), rgba(255, 255, 255, 0.65));
+	border: none;
+	
+}
+.navbar-doublerow .navbar-down ul>li>a{
+    /*Menu items*/
+	color: #000;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-size: 2vmin;
+	text-transform: uppercase;
+	
+}
+.navbar-doublerow .navbar-down ul>li>a:hover{
+    /*menu hover*/
+	border-bottom: 1px solid #CC5500;
+	color: #CC5500;
+	background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.65));
+	
+	
+}
+
+
+.conversation_bot {
+
+  padding: 4px 15px;
+
+
+}
+
+.btn { /* just for this demo. */
+    margin-top: 5px;
+}
+.btn-arrow-right,
+.btn-arrow-left {
+    position: relative;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+.btn-arrow-right {
+    padding-left: 36px;
+}
+.btn-arrow-left {
+    padding-right: 36px;
+}
+.btn-arrow-right:before,
+.btn-arrow-right:after,
+.btn-arrow-left:before,
+.btn-arrow-left:after { /* make two squares (before and after), looking similar to the button */
+    content:"";
+    position: absolute;
+    top: 5px; /* move it down because of rounded corners */
+    width: 22px; /* same as height */
+    height: 22px; /* button_outer_height / sqrt(2) */
+    background: inherit; /* use parent background */
+    border: inherit; /* use parent border */
+    border-left-color: transparent; /* hide left border */
+    border-bottom-color: transparent; /* hide bottom border */
+    border-radius: 0px 4px 0px 0px; /* round arrow corner, the shorthand property doesn't accept "inherit" so it is set to 4px */
+    -webkit-border-radius: 0px 4px 0px 0px;
+    -moz-border-radius: 0px 4px 0px 0px;
+}
+.btn-arrow-right:before,
+.btn-arrow-right:after {
+    transform: rotate(45deg); /* rotate right arrow squares 45 deg to point right */
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+}
+.btn-arrow-left:before,
+.btn-arrow-left:after {
+    transform: rotate(225deg); /* rotate left arrow squares 225 deg to point left */
+    -webkit-transform: rotate(225deg);
+    -moz-transform: rotate(225deg);
+    -o-transform: rotate(225deg);
+    -ms-transform: rotate(225deg);
+}
+.btn-arrow-right:before,
+.btn-arrow-left:before { /* align the "before" square to the left */
+    left: -11px;
+}
+.btn-arrow-right:after,
+.btn-arrow-left:after { /* align the "after" square to the right */
+    right: -11px;
+}
+.btn-arrow-right:after,
+.btn-arrow-left:before { /* bring arrow pointers to front */
+    z-index: 1;
+}
+.btn-arrow-right:before,
+.btn-arrow-left:after { /* hide arrow tails background */
+    background-color: white;
+}
+input {
+	outline-style:none;
+	box-shadow:none;
+}
+
+button {
+	outline-style:none;
+	box-shadow:none;
+}
+
+input[type="text"] {
+	color: black;
+	font-weight: bold; 
+	border: none;
+	background-color: transparent;
+	border-bottom: 1px solid black;
+}
+
+input[type="password"] {
+	color: black;
+	font-weight: bold; 
+	border: none;
+	background-color: transparent;
+	border-bottom: 1px solid black;
+}
+
+.navbar-doublerow .navbar-top ul>a {
+	background-color: rgba(131, 139, 139, 0.3);
+	border: none; 
+	border-left:3px solid black; 
+	border-radius: 5px;
+}
+
+.navbar-doublerow .navbar-top ul>a:hover {
+	background-color: rgba(131, 139, 139, 0.7);
+}
+
+.persoGlyph ul>a {
+	background-color: rgba(131, 139, 139, 0.3);
+	border: none; 
+	border-left:3px solid black; 
+	border-radius: 5px;
+}
+
+.navbar-doublerow .navbar-top ul>a:hover {
+	background-color: rgba(131, 139, 139, 0.7);
+}
+
+
+span[id= "log-out"] {
+	
+	color: rgb(204, 85, 0);
+	font-size: 2vmin;
+	
+}
+span[id= "log-out"]:hover {
+	
+	color: black;
+	font-size: 2vmin;
+	
+}
+
+span[id= "log-out"]:active {
+	
+	font-size: 2.1vmin;
+	
+}
+input {
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+a {
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+}
+input[name="sii-chat-message"]{
+	height: 5vh;
+	position: relative;
+	width: 92%;
+	border: none;
+	color: black;
+	background-color: rgba(218, 165, 32, 0.7);
+	border-bottom: 1px solid black;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-size: 3vmin;
+	text-rendering: optimizeLegibility;
+	font-weight: normal;
+	margin-left: 1%;
+	margin-bottom: 5px;
+	border-radius:5px;
+}
+input[name="sii-chat-message_vide"]{
+	height: 5vh;
+	position: relative;
+	width: 92%;
+	border: none;
+	color: black;
+	background-color: rgba(218, 165, 32, 0.7);
+	border-bottom: 1px solid black;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-size: 3vmin;
+	text-rendering: optimizeLegibility;
+	font-weight: normal;
+	margin-left: 1%;
+	margin-bottom: 5px;
+	background-image: images/loadingBar.gif;
+	border-radius:5px;
+}
+
+input[type="text"]:hover {
+	border-radius: 8px;
+	background-color: rgba(218, 165, 32, 0.8);
+}
+
+input[type="password"]:hover {
+	border-radius: 8px;
+	background-color: rgba(218, 165, 32, 0.3);
+}
+
+input[type="text"]:focus {
+	border-radius: 8px;
+	background-color: rgba(218, 165, 32, 0.9);
+}
+
+input[type="password"]:focus {
+	border-radius: 8px;
+	background-color: rgba(218, 165, 32, 0.5);
+}
+
+button.defilement {
+	background-color: transparent;
+	border: 1px solid black;
+	border-radius: 1vmin;"
+}
+
+button.defilement:hover {
+	background-color: rgba(231, 239, 239, 0.5);
+}
+
+
+h2 {
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+  font-size: 6vmin;
+  padding: 30px 50px;
+  text-align: center;
+  text-transform: uppercase;
+  text-rendering: optimizeLegibility;
+  
+  
+}
+
+.identifier_vous {
+	
+font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+  font-size: 4vmin;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  color: black;
+  Font-Weight: Bold;
+  border: 2px solid red;
+  border-radius: 4px;
+	
+}
+
+
+.name_user {
+	
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+  font-size: 2.4vmin;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  color: black;
+  Font-Weight: Bold;
+  padding-right: 40px;
+  padding-top: 10px;
+	
+}
+ 
+.poser_question {
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+  font-size: 2.5vmin;
+  padding: 0px 15px;
+  text-align: right;
+  text-rendering: optimizeLegibility;
+  color: black;
+  Font-Weight: Bold;
+	
+}
+.debutConv {
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+  font-size: 2.5vmin;
+  padding: 0px 0px;
+  margin-left: 25%;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  color: #CC5500;
+  Font-Weight: Bold;
+  width: 70%;
+  display: none;
+}
+
+.chargement {
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+  font-size: 2.5vmin;
+  padding: 0px 0px;
+  margin-left: 25%;
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  color: #CC5500;
+  Font-Weight: Bold;
+  width: 70%;
+}
+
+.chargementTexte {
+  padding-right: 30%
+}
+
+.entree_texte {
+	
+  padding: 0px 50px;
+  text-align:left;
+	
+}
+.resultat {
+  text-align: center;
+}
+.attente {
+	font-size: 2.4vmin;
+	color: #CC5500;
+}
+
+.sii-chat{
+	width:100%;
+	height: 63vh;
+	padding:5px;
+	background: transparent;
+	margin-left: 0%;
+	margin-top: 0px;
+	float: left;
+}
+
+.console{	
+	min-height:100%;
+	max-height:100%;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+.moi{	
+	display: inline-block;
+	color: white;
+	text-align: left;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-weight: normal;
+	font-size: 2.7vmin;
+	max-width: 65%;
+	background-color: #CC5500;
+	border-radius: 10px;
+	padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+	margin-left: 1%;
+	margin-top: 8px;
+	margin-right: 35%;
+    
+}
+
+.moi_bouton{	
+	display: inline-block;
+	color: white;
+	text-align: left;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-weight: normal;
+	font-size: 2.2vmin;
+	max-width: 65%;
+	padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 10px;
+	margin-left: 0%;
+	margin-top: 4px;
+	margin-right: 35%;
+    
+}
+
+.moiInvisible {display: none;}
+
+
+.pval_montagne{	
+	color:  #CC5500;
+	text-align: justify;
+	text-align-last: left;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-weight: normal;
+	font-size: 2.7vmin;
+	max-width: 65%;
+	background-color: rgba(230, 215, 230, 0.9);
+	border-radius: 10px;
+	border-width: 0.5px;
+	border: solid #CC5500;
+	margin-left: 35%;
+	padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+	margin-right: 1%;
+	margin-top: 8px;
+}
+
+.pval_montagne_bouton{	
+	
+	text-align: justify;
+	text-align-last: left;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-weight: normal;
+	font-size: 2.2vmin;
+	max-width: 65%;
+	background-color: rgba(230, 215, 230, 0.9);
+	margin-left: 35%;
+	padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+	margin-right: 1%;
+	margin-top: 8px;
+}
+
+.pval_montagne_titre{	
+	color:  black;
+	text-align: justify;
+	text-align-last: left;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-weight: normal;
+	font-size: 2.7vmin;
+	max-width: 95%;
+	background-color: rgba(230, 215, 230, 0.9);
+	border-radius: 10px;
+	border-width: 0.5px;
+	border: solid #CC5500;
+	margin-left: 5%;
+	padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+	margin-right: 1%;
+	margin-top: 8px;
+}
+
+.pval_montagne_special{	
+	color:  #CC5500;
+	text-align: justify;
+	text-align-last: left;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-weight: normal;
+	font-size: 2.7vmin;
+	max-width: 95%;
+	background-color: rgba(230, 215, 230, 0.9);
+	border-radius: 10px;
+	border-width: 0.5px;
+	border: solid #CC5500;
+	margin-left: 5%;
+	padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+	margin-right: 1%;
+	margin-top: 8px;
+}
+
+.padding-0{
+    padding-right:0;
+    padding-left:0;
+}
+
+.console::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px transparent;
+	background-color: transparent;
+	border-radius: 5px;
+}
+
+.console::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+.console::-webkit-scrollbar-thumb
+{
+	border-radius: 1px;
+	background-image: -webkit-gradient(linear,
+									   left bottom,
+									   left top,
+									   color-stop(0.44,#bab8b8),
+									   color-stop(0.72, #bab8b8),
+									   color-stop(0.86, #bab8b8));
+
+}
+
+.choixProfil {
+	margin-right: 12%;
+	margin-top:0px;
+	color:  #CC5500;
+	text-align: left;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-weight: normal;
+	font-size: 2.2vmin;
+	
+}
+
+a.profilTexte {
+	
+}
+
+a.profilTexte:hover {
+	border-bottom: 1px solid #CC5500;
+	color: #CC5500;
+	background-color: transparent;
+	
+}
+
+a.profilTexte:active {
+  border-bottom: 1px solid #CC5500;
+}
+
+.conv {
+	display: none;
+}
+
+button.fermerConv {
+	background-color: transparent;
+	border: transparent;
+	border-radius: 5px;
+	margin-left: 97%;
+	color:  black;
+	text-align: right;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-weight: normal;
+	font-size: 3vmin;
+	margin-top: 0.4vh;
+	
+}
+
+button.fermerConv:hover {
+	background-color: rgba(231, 239, 239, 0.5);
+}
+
+button.fermerConv:active
+{
+	transform: translate(0px,2px);
+  -webkit-transform: translate(0px,2px);
+	border-bottom: 1px solid;
+}
+
+button.menerConv {
+	background-color: transparent;
+	border: transparent;
+	border-radius: 5px;
+	margin-left: 0px;
+	color:  black;
+	text-align: left;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-weight: normal;
+	font-size: 4.6vmin;
+	
+}
+
+button.menerConv:hover {
+	background-color: rgba(231, 239, 239, 0.5);
+}
+
+button.menerConv:active
+{
+	transform: translate(0px,2px);
+  -webkit-transform: translate(0px,2px);
+	border-bottom: 1px solid;
+}
+
+.danger {
+	color: red;
+	font-size: 2.1vmin;
+}
+
+.animate
+{
+	transition: all 0.1s;
+	-webkit-transition: all 0.1s;
+}
+
+.action-button
+{
+	position: relative;
+	padding: 3px 15px;
+    margin: 0px 3px 3px 0px;
+    float: left;
+	border-radius: 10px;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-size: 2.3vmin;
+	color: #CC5500;
+	text-decoration: none;	
+}
+
+.action-button_1
+{
+	position: relative;
+	padding: 3px 15px;
+    margin: 0px 3px 3px 0px;
+    float: left;
+	border-radius: 10px;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-size: 2.3vmin;
+	color: #FFF;
+	text-decoration: none;	
+}
+
+.boutonAselect_0
+{
+	background-color: rgba(230, 215, 230, 0.9);
+	border: 2px solid #CC5500;
+}
+
+.boutonAselect_1
+{
+	background-color:  #CC5500;
+	border: 2px solid #CC5500;
+}
+
+.boutonAselect_2
+{
+	background-color: rgba(230, 215, 230, 0.9);
+	border: 2px solid #0077cc;
+}
+
+.boutonAselect_3
+{
+	background-color: transparent;
+	border: 2px solid #CC5500;
+}
+
+.boutonAselect_bis
+{
+	background-color: #CC5500;
+	color: #FFF;
+}
+
+.action-button:hover
+{
+	background-color: #CC5500;
+	color: #FFF;
+}
+
+
+
+.action-button:active
+{
+	transform: translate(0px,5px);
+  -webkit-transform: translate(0px,5px);
+	border-bottom: 1px solid;
+}
+
+.message_perso
+{
+	text-shadow: 0px -1px #D1B358;
+	color: black;
+}
+.Attente
+{
+	text-shadow: 0px -1px #D1B358;
+	color: black;
+	margin-left:14%;
+	font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+	font-size: 3vmin;
+}
+
+
+.vertical {
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  bottom:0;
+  -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+  transform: rotate(-90deg);
+}
+.vertical {
+  box-shadow: inset 0px 4px 6px #ccc;
+}
+.progress-bar {
+  box-shadow: inset 0px 4px 6px rgba(100,100,100,0.6);
+}
+
+@media screen and (max-width: 780px) {
+    
+
+}
+
+@media screen and (max-width: 992px) {
+
+	
+	
+	
+}
+
+
+.sii-chat-send {
+		display:initial;
+		color: #0077cc; 
+		font-size: 3.2vmin;
+		background-color: transparent;
+		border: none;
+	}
+	
+	
+@media screen and (max-width: 1200px) {
+	
+	.pull-left {
+        display:none;
+    }
+	.navbar-brand {
+        display:none;
+    }
+	.content{
+	
+		height: 65vh;
+	
+	}
+	
+	.sii-chat{
+		height: 55vh;
+	}
+	
+	.navbar-down {
+        display:none;
+    }
+
+	.navbar {
+        display:none;
+    }
+	
+	.action-button
+	{
+		
+		font-size: calc(12px + 3vmin);
+		
+	}
+
+	.action-button_1
+	{
+		
+		font-size: calc(12px + 3vmin);
+		
+	}
+	
+	.moi{	
+		font-size: calc(12px + 3vmin);
+		max-width: 85%;
+		margin-right: 15%;
+	}
+
+	.moi_bouton{	
+			font-size: calc(12px + 3vmin);
+			max-width: 85%;
+			margin-right: 15%;
+		
+	}
+
+	.pval_montagne{	
+			font-size: calc(12px + 3vmin);
+			max-width: 85%;
+			margin-left: 15%;
+	}
+
+	.pval_montagne_bouton{	
+			font-size: calc(12px + 3vmin);
+			max-width: 85%;
+			margin-left: 15%;
+		
+	}
+
+	.pval_montagne_titre{	
+		font-size: calc(12px + 3vmin);
+	}
+
+	.pval_montagne_special{	
+		font-size: calc(12px + 3vmin);
+	}
+	
+	input[name="sii-chat-message"]{
+		height: calc(25px + 4vmin);
+		font-size: calc(18px + 4vmin);
+		width: 85%;
+	}
+	input[name="sii-chat-message_vide"]{
+		height: calc(25px + 4vmin);
+		font-size: calc(18px + 4vmin);
+		width: 85%;
+	}
+	
+	.content{
+	
+		height: 99vh;
+		padding-top: 2vh;
+	
+	}
+	
+	.sii-chat{
+		
+		height: 80vh;
+		margin-left: 1%;
+		margin-right : 1%;
+	}
+	
+	.flechettes {
+	
+	display:none;
+
+	}
+	.sii-chat-send {
+		
+		font-size: calc(22px + 3vmin);
+		
+	}
+	.sii-chat-form {
+		
+	}
+	
+	.debutConv {
+
+	  font-size: calc(12px + 3vmin);
+	  
+	}
+	button.menerConv {
+		font-size: calc(18px + 3vmin);
+	}
+	.presentation {
+
+	  width: 80%;
+	  padding-left: 12%;
+	  
+	}
+	
+	.chargement {
+	  
+	  font-size: calc(20px +  4.5vmin);
+	}
+}
+
+@media screen and (max-width: 1137px) {
+	
+	.content{
+	
+		height: 80vh;
+	
+	}
+	
+	.sii-chat{
+		height: 70vh;
+	}
+	
+	input[name="sii-chat-message"]{
+		
+		width: 75%;
+		height: calc(55px + 4vmin);
+	}
+	input[name="sii-chat-message_vide"]{
+		
+		width: 75%;
+		height: calc(55px + 4vmin);
+	}
+	
+	.debutConv {
+
+	  font-size: 22px;
+	  
+	}
+	button.menerConv {
+		font-size: 30px;
+	}
+	.presentation {
+
+	  width: 80%;
+	  padding-left: 12%;
+	  
+	}
+	
+	
+	
+	
+}
+@media screen and (max-width: 320px) {
+	
+	input[name="sii-chat-message"]{
+		
+		width: 80%;
+	}
+	input[name="sii-chat-message_vide"]{
+		
+		width: 80%;
+	}
+	
+	.presentation {
+
+	  width: 80%;
+	  padding-left: 10%;
+	  
+	}
+	
+}
+
+@media screen and (max-height: 385px) {
+	height: 75vh;
+	
+}
